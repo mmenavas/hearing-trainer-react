@@ -1,0 +1,8 @@
+.CardSet {
+  list-style: none;
+  text-align: center;
+}
+.CardSet__item {
+  display: inline-block;
+  margin: 20px;
+}
