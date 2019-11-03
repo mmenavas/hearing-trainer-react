@@ -1,8 +1,8 @@
-.CardSet {
+.NoteSet {
   list-style: none;
   text-align: center;
 }
-.CardSet__item {
+.NoteSet__item {
   display: inline-block;
   margin: 20px;
 }

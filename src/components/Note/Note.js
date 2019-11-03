@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './Card.css'
+import './Note.css'
 
-class Card extends Component {
+class Note extends Component {
 
   constructor(props) {
     super();
@@ -29,11 +29,11 @@ class Card extends Component {
 
   render() {
     return (
-      <div className="Card">
-        <button className="Card__button" onClick={() => this.play()}>{!this.props.hide ? this.props.note : "?"}</button>
+      <div className="Note">
+        <button className="Note__button" onClick={() => this.play()}>{!this.props.hide ? this.props.note : "?"}</button>
       </div>
     );
   }
 }
 
-export default Card
+export default Note

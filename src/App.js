@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import CardSet from './components/CardSet/CardSet'
-import Card from './components/Card/Card'
+import NoteSet from './components/NoteSet/NoteSet'
+import Note from './components/Note/Note'
 import './App.css'
 
 class App extends Component {
@@ -66,11 +66,11 @@ class App extends Component {
       <div className="App">
         {this.state.shuffledNotes.length === 0 ? 
           <>
-            <CardSet cards={this.state.notes}/>
+            <NoteSet notes={this.state.notes}/>
             <button onClick={() => this.handleStart()}>Start</button>
           </> :
           <>
-            <Card note={this.state.shuffledNotes[this.state.active]} hide={true}/>
+            <Note note={this.state.shuffledNotes[this.state.active]} hide={true}/>
             <ul>
               {this.state.notes.map((note, index) => 
                 <li key={index}><button onClick={() => this.handleGuess(note)}>{note}</button></li>
