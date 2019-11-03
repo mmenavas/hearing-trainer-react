@@ -48,7 +48,7 @@ class App extends Component {
             <button onClick={() => this.handleStart()}>Start</button>
           </> :
           <>
-            <Card note={this.state.notes[this.state.active]} hide={false}/>
+            <Card note={this.state.notes[this.state.active]} hide={true}/>
             <ul>
               {this.state.notes.map((note, index) => 
                 <li key={index}><button onClick={() => this.handleGuess(note)}>{note}</button></li>

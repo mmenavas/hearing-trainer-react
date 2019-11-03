@@ -20,7 +20,7 @@ class Card extends Component {
 
   getUrl(note) {
     console.log(note)
-    return '/assets/audio/notes/' + note + '.m4a'
+    return 'assets/audio/notes/' + note + '.m4a'
   }
 
   play() {
