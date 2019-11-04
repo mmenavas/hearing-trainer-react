@@ -1,11 +1,11 @@
 import React from 'react'
-import Note from './Note'
+import Choice from './Choice'
 
 export default {
-  title: 'Note',
+  title: 'Choice',
 }
 
-export const note = () => <Note note={"do4"} />
+export const choice = () => <Choice choice={"do4"} />
 
 // toStorybook.story = {
 //   name: 'to Storybook',

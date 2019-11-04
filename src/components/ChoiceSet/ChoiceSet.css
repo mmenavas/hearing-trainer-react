@@ -1,0 +1,8 @@
+.ChoiceSet {
+  list-style: none;
+  text-align: center;
+}
+.ChoiceSet__item {
+  display: inline-block;
+  margin: 5px;
+}

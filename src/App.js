@@ -1,21 +1,26 @@
 import React, { Component } from 'react'
 import NoteSet from './components/NoteSet/NoteSet'
-import Note from './components/Note/Note'
+import ChoiceSet from './components/ChoiceSet/ChoiceSet'
 import './App.css'
 
 class App extends Component {
 
+  statusMessages = {
+    start: "Push the start button to start your training.",
+    play: "Push the wild card to listen to a musical note, then select the correct note from the multiple choices.",
+    match: "Very well! Now guess the next note.",
+    fail: "Try again! That was not the correct note.",
+    win: "Excellent! You completed this round.",
+  }
+
   constructor() {
     super();
     this.state = {
-      notes: [
-        'do4',
-        're4',
-        'mi4',
-      ],
       count: 0,
       active: 0,
-      shuffledNotes: []
+      reveal: false,
+      shuffledNotes: [],
+      message: this.statusMessages.start,
     }
   }
 
@@ -23,21 +28,40 @@ class App extends Component {
     this.setState({
       active: 0,
       count: 0,
-      shuffledNotes: this.shuffle(this.state.notes),
+      shuffledNotes: this.shuffle(this.props.notes),
+      message: this.statusMessages.start
     })
   }
 
   handleGuess(note) {
+    let message = this.statusMessages.fail
     if (note === this.state.shuffledNotes[this.state.active]) {
       const count = this.state.count + 1
       let shuffledNotes = this.state.shuffledNotes
+      message = this.statusMessages.match
       if (count === shuffledNotes.length) {
         shuffledNotes = []
+        message = this.statusMessages.win
       }
       this.setState({
-        count: count,
-        active: count,
-        shuffledNotes: shuffledNotes,
+        reveal:true,
+        message: message,
+      })
+      setTimeout(() => {
+        this.setState({
+          count: count,
+          active: count,
+          shuffledNotes: shuffledNotes,
+          reveal:false,
+        })
+      }, 1000);
+    }
+    else if (this.state.reveal) {
+      return false;
+    }
+    else {
+      this.setState({
+        message: message
       })
     }
   }
@@ -65,19 +89,18 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.shuffledNotes.length === 0 ? 
-          <>
-            <NoteSet notes={this.state.notes}/>
-            <button onClick={() => this.handleStart()}>Start</button>
-          </> :
-          <>
-            <Note note={this.state.shuffledNotes[this.state.active]} hide={true}/>
-            <ul>
-              {this.state.notes.map((note, index) => 
-                <li key={index}><button onClick={() => this.handleGuess(note)}>{note}</button></li>
-              )}
-            </ul>
-          </>
+          <div className="App__start-section">
+            <NoteSet notes={this.props.notes} hide={false}/>
+            <button className="App__start-button" onClick={() => this.handleStart()}>Start</button>
+          </div> :
+          <div className="App__start-section">
+            <NoteSet notes={[this.state.shuffledNotes[this.state.active]]}  hide={!this.state.reveal} />
+            <ChoiceSet choices={this.props.notes} selectChoice={(note) => this.handleGuess(note)} />
+          </div>
         }
+        <div className="App__status">
+          <p>{this.state.message}</p>
+        </div>
       </div>
     );
   }

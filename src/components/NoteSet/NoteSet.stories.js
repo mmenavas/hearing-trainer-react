@@ -5,9 +5,9 @@ export default {
   title: 'NoteSet',
 }
 
-const Notes = ["do4", "re4", "mi4"]
+const notes = ["do4", "re4", "mi4"]
 
-export const NoteSet = () => <NoteSet Notes={Notes} />
+export const noteSet = () => <NoteSet notes={notes} />
 
 // toStorybook.story = {
 //   name: 'to Storybook',
