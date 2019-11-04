@@ -88,6 +88,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1 className="App__name">Hearing Trainer</h1>
         {this.state.shuffledNotes.length === 0 ? 
           <div className="App__start-section">
             <NoteSet notes={this.props.notes} hide={false}/>
