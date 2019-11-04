@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/hearing-trainer/static/css/main.0f7f30a2.chunk.css",
-    "main.js": "/hearing-trainer/static/js/main.6b1b216b.chunk.js",
-    "main.js.map": "/hearing-trainer/static/js/main.6b1b216b.chunk.js.map",
-    "runtime-main.js": "/hearing-trainer/static/js/runtime-main.f0c967aa.js",
-    "runtime-main.js.map": "/hearing-trainer/static/js/runtime-main.f0c967aa.js.map",
-    "static/js/2.bb22fd3a.chunk.js": "/hearing-trainer/static/js/2.bb22fd3a.chunk.js",
-    "static/js/2.bb22fd3a.chunk.js.map": "/hearing-trainer/static/js/2.bb22fd3a.chunk.js.map",
+    "main.css": "/hearing-trainer/static/css/main.8cafe1a3.chunk.css",
+    "main.js": "/hearing-trainer/static/js/main.f18df435.chunk.js",
+    "main.js.map": "/hearing-trainer/static/js/main.f18df435.chunk.js.map",
+    "runtime-main.js": "/hearing-trainer/static/js/runtime-main.2797b317.js",
+    "runtime-main.js.map": "/hearing-trainer/static/js/runtime-main.2797b317.js.map",
+    "static/css/2.764ccc25.chunk.css": "/hearing-trainer/static/css/2.764ccc25.chunk.css",
+    "static/js/2.2bb14a1d.chunk.js": "/hearing-trainer/static/js/2.2bb14a1d.chunk.js",
+    "static/js/2.2bb14a1d.chunk.js.map": "/hearing-trainer/static/js/2.2bb14a1d.chunk.js.map",
     "index.html": "/hearing-trainer/index.html",
-    "precache-manifest.a7c26e36f3c9f61a34376c1c10fb4e13.js": "/hearing-trainer/precache-manifest.a7c26e36f3c9f61a34376c1c10fb4e13.js",
+    "precache-manifest.675cabb6dbd79aedaa15ce22c51c82c6.js": "/hearing-trainer/precache-manifest.675cabb6dbd79aedaa15ce22c51c82c6.js",
     "service-worker.js": "/hearing-trainer/service-worker.js",
-    "static/css/main.0f7f30a2.chunk.css.map": "/hearing-trainer/static/css/main.0f7f30a2.chunk.css.map"
+    "static/css/2.764ccc25.chunk.css.map": "/hearing-trainer/static/css/2.764ccc25.chunk.css.map",
+    "static/css/main.8cafe1a3.chunk.css.map": "/hearing-trainer/static/css/main.8cafe1a3.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.f0c967aa.js",
-    "static/js/2.bb22fd3a.chunk.js",
-    "static/css/main.0f7f30a2.chunk.css",
-    "static/js/main.6b1b216b.chunk.js"
+    "static/js/runtime-main.2797b317.js",
+    "static/css/2.764ccc25.chunk.css",
+    "static/js/2.2bb14a1d.chunk.js",
+    "static/css/main.8cafe1a3.chunk.css",
+    "static/js/main.f18df435.chunk.js"
   ]
 }
