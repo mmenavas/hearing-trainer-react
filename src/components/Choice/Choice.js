@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
+import Note from '../Note/Note'
 import './Choice.css'
 
 class Choice extends Component {
 
-  select() {
+  handleClick() {
+    console.log("guessing")
     this.props.onClick(this.props.choice)
   }
 
   render() {
     return (
-      <div className="Choice">
-        <button className="Choice__button" onClick={() => this.select()}>{this.props.choice}</button>
+      <div className="Choice" onClick={() => this.handleClick()}>
+        <Note
+          note={this.props.choice}
+          disabled={this.props.disabled}
+        >{this.props.choice}</Note>
       </div>
     );
   }

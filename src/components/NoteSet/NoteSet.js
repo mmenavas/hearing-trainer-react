@@ -6,7 +6,7 @@ const NoteSet = props => (
   <ul className="NoteSet">
     {props.notes.map((note, index) =>
       <li key={index} className="NoteSet__item">
-        <Note note={note} hide={props.hide}/>
+        <Note note={note}/>
       </li>
     )}
   </ul>

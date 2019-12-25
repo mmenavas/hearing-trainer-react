@@ -23,14 +23,16 @@ class Note extends Component {
   }
 
   play() {
-    this.state.audio.load()
-    this.state.audio.play()
+    if (!this.props.disabled) {
+      this.state.audio.load()
+      this.state.audio.play()
+    }
   }
 
   render() {
     return (
       <div className="Note">
-        <button className="Note__button" onClick={() => this.play()}>{!this.props.hide ? this.props.note : "?"}</button>
+        <button className={"Note__button" + (this.props.disabled ? " Note__button--disabled" : "")} onClick={() => this.play()}>{!this.props.hidden ? this.props.note : "?"}</button>
       </div>
     );
   }

@@ -1,13 +1,11 @@
 .App {
 	font-family: Arial;
+  text-align: center;
 }
 .App__name {
 	font-size: 3rem;
 	text-align: center;
 	color: #333;
-}
-.App__start-section {
-  text-align: center;
 }
 .App__start-button {
 	background-color:#d0451b;

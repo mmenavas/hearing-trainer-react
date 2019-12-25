@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import NoteSet from './components/NoteSet/NoteSet'
 import ChoiceSet from './components/ChoiceSet/ChoiceSet'
+import Note from './components/Note/Note'
+// import ChoiceSet from './components/ChoiceSet/ChoiceSet'
 import './App.css'
 
 class App extends Component {
 
   statusMessages = {
-    start: "Push the start button to start your training.",
-    play: "Push the wild card to listen to a musical note, then select the correct note from the multiple choices.",
+    start: "Push the yellow buttons to become familiar with the sounds of the music notes. When you're ready, push the start button to beginn playing.",
+    play: "Push the card with the question mark to listen to a musical note, then select the correct note from the multiple choices.",
     match: "Very well! Now guess the next note.",
     fail: "Try again! That was not the correct note.",
-    win: "Excellent! You completed this round.",
+    win: "Excellent! You won.",
   }
 
   constructor() {
@@ -29,18 +31,18 @@ class App extends Component {
       active: 0,
       count: 0,
       shuffledNotes: this.shuffle(this.props.notes),
-      message: this.statusMessages.start
+      message: this.statusMessages.play
     })
   }
 
   handleGuess(note) {
+    console.log("guess taken")
     let message = this.statusMessages.fail
     if (note === this.state.shuffledNotes[this.state.active]) {
       const count = this.state.count + 1
       let shuffledNotes = this.state.shuffledNotes
       message = this.statusMessages.match
       if (count === shuffledNotes.length) {
-        shuffledNotes = []
         message = this.statusMessages.win
       }
       this.setState({
@@ -90,13 +92,18 @@ class App extends Component {
       <div className="App">
         <h1 className="App__name">Hearing Trainer</h1>
         {this.state.shuffledNotes.length === 0 ? 
-          <div className="App__start-section">
-            <NoteSet notes={this.props.notes} hide={false}/>
+          <div className="App__home-screen">
+            <NoteSet notes={this.props.notes} />
             <button className="App__start-button" onClick={() => this.handleStart()}>Start</button>
           </div> :
-          <div className="App__start-section">
-            <NoteSet notes={[this.state.shuffledNotes[this.state.active]]}  hide={!this.state.reveal} />
-            <ChoiceSet choices={this.props.notes} selectChoice={(note) => this.handleGuess(note)} />
+          <div className="App__play-screen">
+            <Note note={[this.state.shuffledNotes[this.state.active]]}  hidden={!this.state.reveal} />
+            <ChoiceSet choices={this.props.notes} selectChoice={(note) => this.handleGuess(note)} disabled={[...this.state.shuffledNotes.slice(0, this.state.active)]}/>
+            {this.state.shuffledNotes.length === this.state.active ?
+              <button className="App__start-button" onClick={() => this.handleStart()}>Start Over</button>
+              :
+              <></>
+            }
           </div>
         }
         <div className="App__status">
