@@ -6,7 +6,7 @@
     "email": "maximo.mena@gmail.com"
   },
   "license": "MIT",
-  "homepage": "https://mmenavas.github.io/hearing-trainer",
+  "homepage": "https://mmenavas.github.io/hearing-trainer-react",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "normalize.css": "^8.0.1",
