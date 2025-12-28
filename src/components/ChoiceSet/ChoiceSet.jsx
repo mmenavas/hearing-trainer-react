@@ -1,4 +1,3 @@
-import React from 'react';
 import Choice from '../Choice/Choice';
 import './ChoiceSet.css';
 

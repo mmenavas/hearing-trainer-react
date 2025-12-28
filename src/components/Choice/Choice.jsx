@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import Note from '../Note/Note'
 import './Choice.css'
 
