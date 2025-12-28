@@ -1,24 +1,13 @@
 {
   "files": {
-    "main.css": "/hearing-trainer-react/static/css/main.6518887e.chunk.css",
-    "main.js": "/hearing-trainer-react/static/js/main.1fb85420.chunk.js",
-    "main.js.map": "/hearing-trainer-react/static/js/main.1fb85420.chunk.js.map",
-    "runtime-main.js": "/hearing-trainer-react/static/js/runtime-main.dc433a26.js",
-    "runtime-main.js.map": "/hearing-trainer-react/static/js/runtime-main.dc433a26.js.map",
-    "static/css/2.764ccc25.chunk.css": "/hearing-trainer-react/static/css/2.764ccc25.chunk.css",
-    "static/js/2.fbb5a68a.chunk.js": "/hearing-trainer-react/static/js/2.fbb5a68a.chunk.js",
-    "static/js/2.fbb5a68a.chunk.js.map": "/hearing-trainer-react/static/js/2.fbb5a68a.chunk.js.map",
+    "main.css": "/hearing-trainer-react/static/css/main.5ab96e6f.css",
+    "main.js": "/hearing-trainer-react/static/js/main.3b73cfb5.js",
     "index.html": "/hearing-trainer-react/index.html",
-    "precache-manifest.a9d5f87646980597bba8c650e8aad1bd.js": "/hearing-trainer-react/precache-manifest.a9d5f87646980597bba8c650e8aad1bd.js",
-    "service-worker.js": "/hearing-trainer-react/service-worker.js",
-    "static/css/2.764ccc25.chunk.css.map": "/hearing-trainer-react/static/css/2.764ccc25.chunk.css.map",
-    "static/css/main.6518887e.chunk.css.map": "/hearing-trainer-react/static/css/main.6518887e.chunk.css.map"
+    "main.5ab96e6f.css.map": "/hearing-trainer-react/static/css/main.5ab96e6f.css.map",
+    "main.3b73cfb5.js.map": "/hearing-trainer-react/static/js/main.3b73cfb5.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.dc433a26.js",
-    "static/css/2.764ccc25.chunk.css",
-    "static/js/2.fbb5a68a.chunk.js",
-    "static/css/main.6518887e.chunk.css",
-    "static/js/main.1fb85420.chunk.js"
+    "static/css/main.5ab96e6f.css",
+    "static/js/main.3b73cfb5.js"
   ]
 }
