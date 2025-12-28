@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import NoteSet from './components/NoteSet/NoteSet'
 import ChoiceSet from './components/ChoiceSet/ChoiceSet'
 import Note from './components/Note/Note'
-// import ChoiceSet from './components/ChoiceSet/ChoiceSet'
 import './App.css'
 
 class App extends Component {

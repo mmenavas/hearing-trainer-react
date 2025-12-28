@@ -19,7 +19,7 @@ class Note extends Component {
   }
 
   getUrl(note) {
-    return 'assets/audio/notes/' + note + '.m4a'
+    return '/hearing-trainer-react/assets/audio/notes/' + note + '.m4a'
   }
 
   play() {
