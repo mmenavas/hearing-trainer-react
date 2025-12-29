@@ -11,4 +11,5 @@
 - Prevent audio files from being downloaded every time notes are clicked on.
 - Prevent pressing buttons while a note is playing or stop the current note before another note is played.
 - Disable notes until the wildcard note is heard.
+- Disable wildcard note when all notes are guessed correctly.
 - Back button needs to indicate more clearly that pressing that button exits the current game.
