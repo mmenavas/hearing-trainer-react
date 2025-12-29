@@ -1,10 +1,22 @@
-import React, { Component } from 'react'
-import NoteSet from './components/NoteSet/NoteSet'
-import ChoiceSet from './components/ChoiceSet/ChoiceSet'
-import Note from './components/Note/Note'
+import { Component } from 'react'
+import NoteSet from './components/NoteSet/NoteSet.tsx'
+import ChoiceSet from './components/ChoiceSet/ChoiceSet.tsx'
+import Note from './components/Note/Note.tsx'
 import './App.css'
 
-class App extends Component {
+type AppProps = {
+  notes: string[];
+};
+
+type AppState = {
+  count: number;
+  active: number;
+  reveal: boolean;
+  shuffledNotes: string[];
+  message: string;
+};
+
+class App extends Component<AppProps, AppState> {
 
   statusMessages = {
     start: "Push the yellow buttons to become familiar with the sounds of the music notes. When you're ready, push the start button to beginn playing.",
@@ -14,8 +26,8 @@ class App extends Component {
     win: "Excellent! You won.",
   }
 
-  constructor() {
-    super();
+  constructor(props: AppProps, state: AppState) {
+    super(props, state);
     this.state = {
       count: 0,
       active: 0,
@@ -34,12 +46,12 @@ class App extends Component {
     })
   }
 
-  handleGuess(note) {
+  handleGuess(note: string) {
     console.log("guess taken")
     let message = this.statusMessages.fail
     if (note === this.state.shuffledNotes[this.state.active]) {
       const count = this.state.count + 1
-      let shuffledNotes = this.state.shuffledNotes
+      const shuffledNotes = this.state.shuffledNotes
       message = this.statusMessages.match
       if (count === shuffledNotes.length) {
         message = this.statusMessages.win
@@ -75,11 +87,11 @@ class App extends Component {
    * 
    * @return []
    */
-  shuffle(items) {
-    let newItems = items.slice(0)
+  shuffle(items: string[]) {
+    const newItems = items.slice(0)
 
     for (let i = newItems.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(Math.random() * (i + 1));
       [newItems[i], newItems[j]] = [newItems[j], newItems[i]];
     }
 
@@ -96,8 +108,8 @@ class App extends Component {
             <button className="App__start-button" onClick={() => this.handleStart()}>Start</button>
           </div> :
           <div className="App__play-screen">
-            <Note note={[this.state.shuffledNotes[this.state.active]]}  hidden={!this.state.reveal} />
-            <ChoiceSet choices={this.props.notes} selectChoice={(note) => this.handleGuess(note)} disabled={[...this.state.shuffledNotes.slice(0, this.state.active)]}/>
+            <Note note={this.state.shuffledNotes[this.state.active]}  hidden={!this.state.reveal} />
+            <ChoiceSet choices={this.props.notes} onChoiceSelection={(note: string) => this.handleGuess(note)} disabled={[...this.state.shuffledNotes.slice(0, this.state.active)]}/>
             {this.state.shuffledNotes.length === this.state.active ?
               <button className="App__start-button" onClick={() => this.handleStart()}>Start Over</button>
               :

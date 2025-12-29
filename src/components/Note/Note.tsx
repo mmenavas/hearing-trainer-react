@@ -1,16 +1,26 @@
 import { Component } from 'react'
 import './Note.css'
 
-class Note extends Component {
+type NoteProps = {
+  note: string;
+  disabled?: boolean;
+  hidden?: boolean;
+};
 
-  constructor(props) {
-    super();
+type NoteState = {
+  audio: HTMLAudioElement;
+};
+
+class Note extends Component<NoteProps, NoteState> {
+
+  constructor(props: NoteProps, state: NoteState) {
+    super(props, state);
     this.state = {
       audio: new Audio(this.getUrl(props.note))
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: NoteProps) {
     if (prevProps.note !== this.props.note) {
       this.setState({
         audio: new Audio(this.getUrl(this.props.note))
@@ -18,14 +28,16 @@ class Note extends Component {
     }
   }
 
-  getUrl(note) {
-    return '/hearing-trainer-react/assets/audio/notes/' + note + '.m4a'
+  getUrl(note: string) {
+    console.log();
+    const baseUrl = import.meta.env.BASE_URL || '/';
+    return baseUrl + 'assets/audio/notes/' + note + '.m4a';
   }
 
   play() {
     if (!this.props.disabled) {
-      this.state.audio.load()
-      this.state.audio.play()
+      this.state.audio.load();
+      this.state.audio.play();
     }
   }
 
