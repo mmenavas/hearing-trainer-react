@@ -15,15 +15,20 @@ class Note extends Component<NoteProps, NoteState> {
 
   constructor(props: NoteProps, state: NoteState) {
     super(props, state);
+
+    const audio = new Audio(this.getUrl(props.note));
+    audio.load();
     this.state = {
-      audio: new Audio(this.getUrl(props.note))
+      audio: audio
     }
   }
 
   componentDidUpdate(prevProps: NoteProps) {
     if (prevProps.note !== this.props.note) {
+      const audio = new Audio(this.getUrl(this.props.note));
+      audio.load();
       this.setState({
-        audio: new Audio(this.getUrl(this.props.note))
+        audio: audio
       })
     }
   }
@@ -36,7 +41,7 @@ class Note extends Component<NoteProps, NoteState> {
 
   play() {
     if (!this.props.disabled) {
-      this.state.audio.load();
+      this.state.audio.currentTime = 0;
       this.state.audio.play();
     }
   }

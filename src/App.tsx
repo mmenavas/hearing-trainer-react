@@ -58,25 +58,31 @@ class App extends Component<AppProps, AppState> {
 
   handleGuess(note: string) {
     console.log("guess taken");
-    let message = this.statusMessages.fail;
     if (note === this.state.shuffledNotes[this.state.count]) {
       const count = this.state.count + 1;
-      const shuffledNotes = this.state.shuffledNotes;
-      message = this.statusMessages.match;
-      if (count === shuffledNotes.length) {
-        message = this.statusMessages.win
-      }
-      this.setState({
-        reveal:true,
-        message: message,
-      })
-      setTimeout(() => {
+      if (count === this.state.shuffledNotes.length) {
+        // Handle game over.
         this.setState({
           count: count,
-          reveal: false,
-          guessedNotes: [...this.state.guessedNotes, note]
+          reveal:true,
+          guessedNotes: [...this.state.guessedNotes, note],
+          message: this.statusMessages.win,
         })
-      }, 1000);
+      }
+      else {
+        // Handle note match.
+        this.setState({
+          reveal:true,
+          message: this.statusMessages.match,
+        })
+        setTimeout(() => {
+          this.setState({
+            count: count,
+            reveal: false,
+            guessedNotes: [...this.state.guessedNotes, note]
+          })
+        }, 1000);
+      }
     }
     else if (
       // Do nothing if a correct guess was just made.
@@ -90,7 +96,7 @@ class App extends Component<AppProps, AppState> {
       // An incorrect guess was made.
       this.setState({
         mistakes: this.state.mistakes + 1,
-        message: message
+        message: this.statusMessages.fail 
       })
     }
   }
@@ -125,8 +131,8 @@ class App extends Component<AppProps, AppState> {
           </div> :
           <div className="App__play-screen">
             <p>Mistakes: { this.state.mistakes }</p>
-            <Note note={this.state.shuffledNotes[this.state.count]}  concealed={!this.state.reveal} disabled={this.state.count === this.state.shuffledNotes.length}/>
-            <ChoiceSet choices={this.props.notes} onChoiceSelection={(note: string) => this.handleGuess(note)} disabled={this.state.guessedNotes}/>
+            <Note note={this.state.count === this.state.shuffledNotes.length ? this.state.shuffledNotes[this.state.count - 1] : this.state.shuffledNotes[this.state.count]}  concealed={!this.state.reveal} disabled={this.state.count === this.state.shuffledNotes.length}/>
+            <ChoiceSet choices={this.props.notes} onChoiceSelection={(note: string) => this.handleGuess(note)} disabledChoices={this.state.guessedNotes} hold={this.state.reveal} />
             {this.state.shuffledNotes.length === this.state.count ?
               <button className="App__start-button" onClick={() => this.handleStart()}>Start Over</button>
               :

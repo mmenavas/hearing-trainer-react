@@ -10,8 +10,10 @@ type ChoiceProps = {
 const Choice = (props: ChoiceProps) => {
 
   const handleClick = () => {
-    console.log("guessing");
-    props.onClick(props.choice);
+    if (!props.disabled) {
+      console.log("guessing");
+      props.onClick(props.choice);
+    }
   }
 
   return (
