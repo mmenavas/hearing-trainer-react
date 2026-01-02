@@ -9,50 +9,60 @@ type AppProps = {
 };
 
 type AppState = {
+  // How many notes have been guessed correctly.
   count: number;
-  active: number;
+  // Number of incorrect guesses.
+  mistakes: number;
+  // Whether or not to show the random note.
   reveal: boolean;
+  // The notes in random order.
   shuffledNotes: string[];
+  // The notes already guessed correctly.
+  guessedNotes: string[];
+  // Message to be displayed to the user.
   message: string;
 };
 
 class App extends Component<AppProps, AppState> {
 
   statusMessages = {
-    start: "Push the yellow buttons to become familiar with the sounds of the music notes. When you're ready, push the start button to beginn playing.",
-    play: "Push the card with the question mark to listen to a musical note, then select the correct note from the multiple choices.",
+    start: "Push the yellow cards to become familiar with the sounds of the music notes. When you're ready, push the start button to begin playing.",
+    play: "Push the card with the question mark to listen to a random music note, then select the correct note from the multiple choices.",
     match: "Very well! Now guess the next note.",
     fail: "Try again! That was not the correct note.",
     win: "Excellent! You won.",
-  }
+  };
 
   constructor(props: AppProps, state: AppState) {
     super(props, state);
     this.state = {
       count: 0,
-      active: 0,
+      mistakes: 0,
       reveal: false,
       shuffledNotes: [],
+      guessedNotes: [],
       message: this.statusMessages.start,
-    }
+    };
   }
 
   handleStart() {
     this.setState({
-      active: 0,
       count: 0,
+      mistakes: 0,
+      reveal: false,
       shuffledNotes: this.shuffle(this.props.notes),
+      guessedNotes: [],
       message: this.statusMessages.play
     })
   }
 
   handleGuess(note: string) {
-    console.log("guess taken")
-    let message = this.statusMessages.fail
-    if (note === this.state.shuffledNotes[this.state.active]) {
-      const count = this.state.count + 1
-      const shuffledNotes = this.state.shuffledNotes
-      message = this.statusMessages.match
+    console.log("guess taken");
+    let message = this.statusMessages.fail;
+    if (note === this.state.shuffledNotes[this.state.count]) {
+      const count = this.state.count + 1;
+      const shuffledNotes = this.state.shuffledNotes;
+      message = this.statusMessages.match;
       if (count === shuffledNotes.length) {
         message = this.statusMessages.win
       }
@@ -63,17 +73,23 @@ class App extends Component<AppProps, AppState> {
       setTimeout(() => {
         this.setState({
           count: count,
-          active: count,
-          shuffledNotes: shuffledNotes,
-          reveal:false,
+          reveal: false,
+          guessedNotes: [...this.state.guessedNotes, note]
         })
       }, 1000);
     }
-    else if (this.state.reveal) {
+    else if (
+      // Do nothing if a correct guess was just made.
+      this.state.reveal ||
+      // Do nothing if a disabled card was clicked on.
+      this.state.guessedNotes.includes(note)
+    ) {
       return false;
     }
     else {
+      // An incorrect guess was made.
       this.setState({
+        mistakes: this.state.mistakes + 1,
         message: message
       })
     }
@@ -108,9 +124,10 @@ class App extends Component<AppProps, AppState> {
             <button className="App__start-button" onClick={() => this.handleStart()}>Start</button>
           </div> :
           <div className="App__play-screen">
-            <Note note={this.state.shuffledNotes[this.state.active]}  hidden={!this.state.reveal} />
-            <ChoiceSet choices={this.props.notes} onChoiceSelection={(note: string) => this.handleGuess(note)} disabled={[...this.state.shuffledNotes.slice(0, this.state.active)]}/>
-            {this.state.shuffledNotes.length === this.state.active ?
+            <p>Mistakes: { this.state.mistakes }</p>
+            <Note note={this.state.shuffledNotes[this.state.count]}  concealed={!this.state.reveal} disabled={this.state.count === this.state.shuffledNotes.length}/>
+            <ChoiceSet choices={this.props.notes} onChoiceSelection={(note: string) => this.handleGuess(note)} disabled={this.state.guessedNotes}/>
+            {this.state.shuffledNotes.length === this.state.count ?
               <button className="App__start-button" onClick={() => this.handleStart()}>Start Over</button>
               :
               <></>

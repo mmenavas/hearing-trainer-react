@@ -4,7 +4,7 @@ import './Note.css'
 type NoteProps = {
   note: string;
   disabled?: boolean;
-  hidden?: boolean;
+  concealed?: boolean;
 };
 
 type NoteState = {
@@ -29,7 +29,7 @@ class Note extends Component<NoteProps, NoteState> {
   }
 
   getUrl(note: string) {
-    console.log();
+    console.log(note);
     const baseUrl = import.meta.env.BASE_URL || '/';
     return baseUrl + 'assets/audio/notes/' + note + '.m4a';
   }
@@ -44,7 +44,7 @@ class Note extends Component<NoteProps, NoteState> {
   render() {
     return (
       <div className="Note">
-        <button className={"Note__button" + (this.props.disabled ? " Note__button--disabled" : "")} onClick={() => this.play()}>{!this.props.hidden ? this.props.note : "?"}</button>
+        <button className={"Note__button" + (this.props.disabled ? " Note__button--disabled" : "")} onClick={() => this.play()}>{!this.props.concealed ? this.props.note : "?"}</button>
       </div>
     );
   }
