@@ -9,7 +9,7 @@
 
 ## Improvements
 - ~Disable wildcard note when all notes are guessed correctly.~ Done!
-- Prevent audio files from being downloaded every time notes are clicked on.
+- ~Prevent audio files from being downloaded every time notes are clicked on.~ Done! Though, sometimes audio files show up on Network tab as if they were downloaded but there's no recognizable pattern.
 - Prevent pressing buttons while a note is playing or stop the current note before another note is played.
 - Disable notes until the wildcard note is heard.
 - Back button needs to indicate more clearly that pressing that button exits the current game.

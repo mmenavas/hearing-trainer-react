@@ -7,42 +7,32 @@ type NoteProps = {
   concealed?: boolean;
 };
 
-type NoteState = {
-  audio: HTMLAudioElement;
-};
+class Note extends Component<NoteProps> {
 
-class Note extends Component<NoteProps, NoteState> {
+  private audio: HTMLAudioElement;
 
-  constructor(props: NoteProps, state: NoteState) {
-    super(props, state);
-
-    const audio = new Audio(this.getUrl(props.note));
-    audio.load();
-    this.state = {
-      audio: audio
-    }
+  constructor(props: NoteProps) {
+    super(props);
+    this.audio = new Audio(this.getUrl(this.props.note))
+    this.audio.load();
   }
 
   componentDidUpdate(prevProps: NoteProps) {
     if (prevProps.note !== this.props.note) {
-      const audio = new Audio(this.getUrl(this.props.note));
-      audio.load();
-      this.setState({
-        audio: audio
-      })
+      this.audio = new Audio(this.getUrl(this.props.note));
+      this.audio.load();
     }
   }
 
   getUrl(note: string) {
-    console.log(note);
     const baseUrl = import.meta.env.BASE_URL || '/';
     return baseUrl + 'assets/audio/notes/' + note + '.m4a';
   }
 
   play() {
     if (!this.props.disabled) {
-      this.state.audio.currentTime = 0;
-      this.state.audio.play();
+      this.audio.currentTime = 0;
+      this.audio.play();
     }
   }
 
